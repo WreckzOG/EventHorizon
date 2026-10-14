@@ -3,5 +3,5 @@
   "version_number": "1.0.0",
   "website_url": "https://github.com/WreckzOG/EventHorizon",
   "description": "Void Fiend's domain expansion: a stage-wide cosmic void, physical black hole, enemy capture and stacking burns. Deal damage to charge, then press T for 22 seconds of Event Horizon. Made with Codex / ChatGPT.",
-  "dependencies": ["bbepis-BepInExPack-5.4.2121"]
+  "dependencies": ["bbepis-BepInExPack-5.4.2121", "RiskofThunder-RoR2BepInExPack-1.43.0"]
 }

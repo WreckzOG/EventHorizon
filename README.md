@@ -25,7 +25,7 @@ Deal damage to enemies to fill the on-screen meter. The default requirement is *
 
 ## Installation
 
-Install with **r2modman** or **Thunderstore Mod Manager** and launch modded. BepInExPack is the only required mod dependency. For manual installation, copy `plugins/EventHorizon` into `BepInEx/plugins` after installing BepInExPack. Restart the game after installing.
+Install with **r2modman** or **Thunderstore Mod Manager** and launch modded. BepInExPack and RoR2BepInExPack install as dependencies. For manual installation, install both dependency packs, then copy `plugins/EventHorizon` into `BepInEx/plugins`. Restart the game after installing.
 
 Do not enable this alongside the private **Survivor Domains** development pack, which already contains Event Horizon.
 
