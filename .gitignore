@@ -1,0 +1,12 @@
+*.dll
+*.exe
+*.rsp
+*.log
+__pycache__/
+package/
+test-runtime/
+media/
+validation/
+tests/*.bin
+prepare-source.py
+prepare-validation.py
