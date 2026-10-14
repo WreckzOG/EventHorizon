@@ -15,7 +15,7 @@ The demo was recorded during development and shows the old duration and test but
 - **Stacking fire near the core:** every continuous second within 12 meters of the black hole's surface adds a native Burn stack lasting 4 seconds. Leaving resets the partial interval; existing burns can outlast the domain.
 - **Projectile distortion:** supported hostile projectiles curve, slow, and can be absorbed. Friendly shots are preserved; custom projectile movers are conservatively excluded.
 - **Singularity Attunement:** Void Fiend gains 20% movement speed and a gentler fall-speed cap while the domain is active.
-- **Opening impact and soundtrack:** the supplied impact plays immediately, with music during the domain. The presentation dissolves after expiry and restores the stage.
+- **Opening impact and soundtrack:** the impact plays immediately. Event Horizon's soundtrack replaces the regular RoR2 music while active; the game's music comes back when it ends or is interrupted. Combat sounds remain audible. The presentation dissolves after expiry and restores the stage.
 
 Your normal skills and corruption system remain available. This package contains **only Void Fiend's Event Horizon**.
 

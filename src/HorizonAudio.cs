@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 namespace EventHorizon
 {
-    // RoR2 disables Unity Audio. Local voices never modify device or Wwise volume.
+    // RoR2 disables Unity Audio. Local voices use WinMM; the soundtrack owns a
+    // temporary gate on RoR2's native music channel for exactly its lifetime.
     internal sealed class HorizonAudio:MonoBehaviour
     {
         private static HorizonWaveAsset hitClip,loopClip;
@@ -22,16 +23,17 @@ namespace EventHorizon
         {
             float age=Time.time-start;
             if(closing||age>=windup+duration){Stop();return;}
-            if(!Plugin.SoundEnabled.Value){hitStarted=true;Stop();return;}
+            if(!Plugin.SoundEnabled.Value||Plugin.SoundVolume.Value<=0){hitStarted=true;Stop();return;}
             try {
                 float gain=Plugin.Clamp(Plugin.SoundVolume.Value,0,1);
                 if(!hitStarted){hitStarted=true;if(hitClip==null)hitClip=HorizonWaveAsset.Load("SurvivorDomains.HorizonHit");hit=new HorizonWaveVoice(hitClip,false,Mathf.Max(0,age),gain);}
                 if(age>=windup&&music==null){if(loopClip==null)loopClip=HorizonWaveAsset.Load("SurvivorDomains.HorizonLoop");music=new HorizonWaveVoice(loopClip,true,age-windup,gain*.65f);}
+                if(music!=null)HorizonMusicMix.Acquire(this);
                 bool paused=Time.timeScale<=0;
                 if(hit!=null)hit.Pause(paused);if(music!=null)music.Pause(paused);
             }catch(Exception e){Stop();closing=true;if(!warned){warned=true;Plugin.Log.LogWarning("Event Horizon supplied audio: "+e.Message);}}
         }
-        private void Stop(){if(hit!=null){hit.Dispose();hit=null;}if(music!=null){music.Dispose();music=null;}}
+        private void Stop(){try{if(hit!=null){hit.Dispose();hit=null;}if(music!=null){music.Dispose();music=null;}}finally{HorizonMusicMix.Release(this);}}
         private void OnDisable(){Stop();}
         private void OnDestroy(){Stop();}
     }

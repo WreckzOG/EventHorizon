@@ -1,4 +1,10 @@
-# Release validation: 1.0.0
+# Validation: 1.0.1 local audio patch
+
+- All existing 135 behavior, surface and geometry checks still pass.
+- 29 production audio lifecycle checks pass: native music suppression/restoration, overlapping casts, interruption, shutdown, disabled/zero-gain soundtrack, playback failure, pause, and preservation of music preference changes.
+- Native game startup successfully bound both Harmony audio hooks. Audible/native-RTPC verification could not complete in the isolated process because Wwise failed to initialize its sound engine (`AK_Fail`); an in-game audio check after restart is still needed. The normal game process has a successfully initialized sound engine.
+
+## Original release validation: 1.0.0
 
 - Compiled against installed Risk of Rain 2 assemblies.
 - 74 deterministic production combat/projectile assertions, including instant activation through 21.999 seconds and expiry at 22 seconds.

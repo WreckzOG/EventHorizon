@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace EventHorizon
 {
-    [BepInPlugin("wreckzog.eventhorizon", "Event Horizon", "1.0.0")]
+    [BepInPlugin("wreckzog.eventhorizon", "Event Horizon", "1.0.1")]
     [BepInIncompatibility("local.survivordomains")]
     [BepInDependency("local.alienskies", BepInDependency.DependencyFlags.SoftDependency)]
     public sealed class Plugin : BaseUnityPlugin
@@ -22,13 +22,14 @@ namespace EventHorizon
             HorizonSystem.Initialize(Config);
             patches=new Harmony("wreckzog.eventhorizon");patches.PatchAll(typeof(Plugin).Assembly);
             HorizonProjectileRegistry.Initialize();
-            Log.LogInfo("Event Horizon 1.0.0 ready: Void Fiend only, 22-second default, charged activation only.");
+            Log.LogInfo("Event Horizon 1.0.1 ready: Void Fiend only, 22-second default, soundtrack replaces game music during the domain.");
         }
         private void Update(){HorizonSystem.Update();}
         private void FixedUpdate(){HorizonCombat.Tick();HorizonProjectiles.Tick();}
         private void OnDestroy()
         {
             HorizonSystem.Shutdown();
+            HorizonMusicMix.Shutdown();
             if(patches!=null)patches.UnpatchSelf();
             HorizonProjectileRegistry.Projectiles.Clear();DomainVisual.Clear();
         }

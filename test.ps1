@@ -5,7 +5,8 @@ try {
     foreach($ehSet in @(
         @{Name='HorizonHarness';Files=@('HorizonCombat','HorizonBurnTimer','HorizonProjectiles','HorizonRules','DomainRules')},
         @{Name='HorizonSurfaceHarness';Files=@('HorizonSurfaces','HorizonClutterNames')},
-        @{Name='HorizonMeshHarness';Files=@('HorizonBlackHole')}
+        @{Name='HorizonMeshHarness';Files=@('HorizonBlackHole')},
+        @{Name='HorizonMusicHarness';Files=@('HorizonAudio','HorizonMusicMix')}
     )) {
         $ehSources=(@('tests/'+$ehSet.Name+'.cs')+@($ehSet.Files|ForEach-Object{'src/'+$_+'.cs'}))|ForEach-Object{Join-Path $PSScriptRoot $_}
         & $ehCompiler /nologo /nowarn:0649,0108 ('/out:tests/'+$ehSet.Name+'.exe') $ehSources
